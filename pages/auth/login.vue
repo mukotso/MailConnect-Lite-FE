@@ -1,5 +1,5 @@
 <template>
     <div>
-     <h1>npm i pinia -f</h1>
+     <h1> Side base login page</h1>
     </div>
 </template>
