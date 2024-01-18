@@ -1,38 +1,54 @@
 <template>
-    <div class="card flex justify-content-center mt-4">
-        <form @submit="onSubmit" class="flex flex-column gap-2">
-            <span class="p-float-label">
-                <InputText id="value" v-model="email" type="text" :class="{ 'p-invalid': errorMessage }" aria-describedby="text-error" />
-                <label for="value">Name - Surname</label>
-            </span>
+   <div class=" m-8 grid  grid-cols-2 gap-4 ">
+    <div class=" hidden md:block  w-1/2">
 
-            <span class="p-float-label">
-    <InputText id="username" v-model="value" />
-    <label for="username">Username</label>
-</span>
+        <h1> IMAGE</h1>
 
-            <!-- <small class="p-error" id="text-error">{{ errorMessage || '&nbsp;' }}</small> -->
-            <Button type="submit" label="Submit" />
+    </div>
+    <div class=" card flex justify-content-center  mt-4">
+        <form @submit.prevent="loginUser" >
+            <InputTextCustom :errors="errors" name="email" label="Email Address" placeholder="Secondary Contact Name"
+                v-model="email" />
+
+            <InputTextCustom :errors="errors" name="password" label="Password" placeholder="Secondary Contact Name"
+                v-model="password" />
+
+            <Button type="submit" severity="success" class=" px-5 py-2">SIGN IN</Button>
         </form>
         <Toast />
     </div>
+   </div>
 </template>
 
 <script  setup>
-// import Button from "primevue/button"
-// import InputText from "primevue/inputtext";
-// import { useToast } from "primevue/usetoast"
+import { useForm } from 'vee-validate';
+import { useToast } from "primevue/usetoast"
 
-// const Toast = useToast();
-const email = ref("")
-const errorMessage = reactive({
+const Toast = useToast();
+
+
+const validationRules = reactive({
+    email: 'required',
+    password: 'required',
 
 })
-const  onSubmit =  ()=> {
+const { defineField, handleSubmit, resetForm, errors, setErrors } = useForm({
+    validationSchema: validationRules,
+});
 
-}
+
+const [email] = defineField('email')
+const [password] = defineField('password')
+
+const loginUser = handleSubmit(async (values) => {
+  const { data } = useMyFetch('/login', {
+    body:{
+        'email': email.value,
+        'password': password.value
+    }
+  })
+})
+
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

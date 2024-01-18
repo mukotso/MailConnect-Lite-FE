@@ -14,7 +14,7 @@ export default defineNuxtConfig({
 
   plugins: [
     '~/plugins/vee-validate.js',
-  ],
+      ],
 
   css: [
     "primevue/resources/themes/lara-light-blue/theme.css",
