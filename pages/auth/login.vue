@@ -1,23 +1,28 @@
 <template>
-   <div class=" m-8 grid  grid-cols-2 gap-4 ">
-    <div class=" hidden md:block  w-1/2">
-
-        <h1> IMAGE</h1>
-
-    </div>
-    <div class=" card flex justify-content-center  mt-4">
+<div class=" mt-[10vh]  md:flex md:justify-content-center">
+    <Toast/>
+    <div class=" w-full md:w-1/2 ">
+    <Card >
+    <template #title> WELCOME BACK !</template>
+    <template #content>
         <form @submit.prevent="loginUser" >
-            <InputTextCustom :errors="errors" name="email" label="Email Address" placeholder="Secondary Contact Name"
+            <div>
+                <InputTextCustom :errors="errors" name="email" label="Email Address" placeholder="Secondary Contact Name"
                 v-model="email" />
+            </div>
 
-            <InputTextCustom :errors="errors" name="password" label="Password" placeholder="Secondary Contact Name"
+            <div >
+                <InputTextCustom :errors="errors" name="password" label="Password" placeholder="Secondary Contact Name"
                 v-model="password" />
+            </div>
 
             <Button type="submit" severity="success" class=" px-5 py-2">SIGN IN</Button>
         </form>
-        <Toast />
-    </div>
-   </div>
+    </template>
+</Card>
+</div>
+</div>
+ 
 </template>
 
 <script  setup>

@@ -75,7 +75,7 @@ export default {
   position: relative;
   display: flex;
   flex-direction: column;
-  width: 300px;
+ 
 }
 
 .simple__input_wrap i,
