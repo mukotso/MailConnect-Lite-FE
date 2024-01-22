@@ -1,7 +1,7 @@
 <template>
-<div class=" mt-[10vh]  md:flex md:justify-content-center">
+<div class=" mx-6 mt-[10vh] ">
     <Toast/>
-    <div class=" w-full md:w-1/2 ">
+    <div>
     <Card >
     <template #title> WELCOME BACK !</template>
     <template #content>
@@ -16,7 +16,9 @@
                 v-model="password" />
             </div>
 
-            <Button type="submit" severity="success" class=" px-5 py-2">SIGN IN</Button>
+            <Button type="submit" severity="success" class=" mt-5   w-full px-5 py-2"><span class="ml-[40%]">SIGN IN <i class=" ml-2 pi pi-lock"></i></span></Button>
+
+
         </form>
     </template>
 </Card>
@@ -26,8 +28,14 @@
 </template>
 
 <script  setup>
+
+
+import Button from 'primevue/button';
 import { useForm } from 'vee-validate';
 import { useToast } from "primevue/usetoast"
+
+
+definePageMeta({ layout: 'auth'})
 
 const Toast = useToast();
 
@@ -56,4 +64,19 @@ const loginUser = handleSubmit(async (values) => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+
+.p-component, .p-component * {
+    box-sizing: border-box;
+}
+.p-button {
+    color: #ffffff;
+    background: #10b981;
+    border: 1px solid #10b981;
+    padding: 0.75rem 1.25rem;
+    font-size: 1rem;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    border-radius: 6px;
+}
+</style>
